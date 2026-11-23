@@ -10,14 +10,16 @@ if os.path.exists(FILE_HAME):
 else:
     todo_list = []
 
-app = CTk()
+app = CTk(fg_color="#B9C7D2")
 app.title("TO DO LIST")
 app.geometry("500x500")
 app.resizable(False, False)
 
+
 title_Label = CTkLabel(
     app,
     text= "MY TODO list",
+    text_color="#627C8C",
     font= ("Arial", 20, "bold")
 )
 
@@ -28,7 +30,9 @@ entry = CTkEntry(
     placeholder_text= "Write new task, for ex. - read a book",
     width= 450,
     height= 40,
-    font= ("Arial", 14)
+    font= ("Arial", 14),
+    text_color="#2B3034",
+    fg_color="#989398"
 )
 
 entry.pack(pady = 10)
@@ -37,7 +41,11 @@ text_box = CTkTextbox(
     app,
     width= 450,
     height= 200,
-    font= ("Arial", 14)
+    font= ("Arial", 14),
+    text_color="#2B3034",
+    fg_color="#989398",
+    border_color="#2B3034",
+    border_width=2,
 )
 
 text_box.pack(pady = 10)
@@ -77,6 +85,11 @@ button_frame.pack(pady = 10)
 add_button = CTkButton(
     button_frame,
     text= "Add new tast",
+    fg_color="#627C8C",
+    text_color="#2B3034",
+    hover_color="#455D74",
+    border_color="#2B3034",
+    border_width=2,
     width= 150,
     command=add_task
 )
@@ -87,6 +100,11 @@ delete_button = CTkButton(
     button_frame,
     text= "Delete the last one",
     width= 150,
+    fg_color="#E93C35",
+    border_color="#B9C7D2",
+    border_width=2,
+    text_color="#B9C7D2",
+    hover_color="#751F0A",
     command=delete_last
 )
 delete_button.pack(side = "left", padx = 10)
@@ -95,8 +113,10 @@ clear_button = CTkButton(
     app,
     text= "Claer all",
     width=  350,
-    fg_color="red",
-    hover_color="darkred",
+    fg_color="#E93C35",
+    border_color="#B9C7D2",
+    border_width=2,
+    hover_color="#751F0A",
     command=clear_all
 )
 clear_button.pack(padx = 15)
