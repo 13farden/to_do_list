@@ -1,8 +1,16 @@
 from customtkinter import *
 import json 
 import os
+from pygame import mixer
+from pygame import key
+
+mixer.init()
+button_click_sound = mixer.Sound("ping-pong-master\\button_click.mp3")
+button_click_sound.set_volume(0.5)
 
 FILE_HAME = "to_do_list.json"
+def play_click_sound():
+    button_click_sound.play()
 
 if os.path.exists(FILE_HAME):
     with open(FILE_HAME, "r", encoding="utf-8")  as file:
@@ -57,23 +65,27 @@ def update_display():
     else:
         for i, task in enumerate(todo_list, start=1):
             text_box.insert("end", f"{i}. {task}\n")
-
+#keys = key.get_pressed ()
 def add_task():
+    button_click_sound.play()
     new_task = entry.get().strip()
     if new_task:
         todo_list.append(new_task)
         entry.delete(0, END)
         with open(FILE_HAME, "w", encoding="utf-8") as file:
             json.dump(todo_list, file, ensure_ascii=False, indent=4)
+        
             update_display()
 
 def delete_last():
+    button_click_sound.play()
     if todo_list:
         todo_list.pop()
         with open(FILE_HAME, "w", encoding="utf-8") as file:
                    json.dump(todo_list, file, ensure_ascii=False, indent=4)
         update_display()           
 def clear_all():
+     button_click_sound.play()
      if todo_list:
           todo_list.clear()
           with open(FILE_HAME, "w", encoding="utf-8") as file:
